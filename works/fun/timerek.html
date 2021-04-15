@@ -1,0 +1,195 @@
+<html lang="pl">
+<head>
+<title>www </title>
+<meta charset="utf-8">
+<style>body {
+background: #f3a767 ;
+font-family:sans-serif;
+}
+h1 {
+    text-shadow: 1px 2px 3px;
+}
+
+.hh{font-weight: 100;
+  font-size: 2.1em;
+  text-transform: uppercase;}
+
+#stoper {
+width: 800px;
+margin: 30px auto;
+color:black;
+text-align:center;1
+}
+.btn {
+  background: #00ff1e;
+  background-image: linear-gradient(to bottom, #00ff1e, #00bd16);
+  border-radius: 12px;
+  text-shadow: 0px 1px 0px #666666;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #20f000;
+  background-image: linear-gradient(to bottom, #20f000, #0dff00);
+  text-decoration: none;
+} 
+
+#bstop {
+  background: #ff6971;
+  background-image: linear-gradient(to bottom, #ff6971, #ff0000);
+}
+#bstop:hover {
+  background: #ff0000;
+  background-image: linear-gradient(to bottom, #ff0000, #e30000);
+}
+
+
+#breset {
+ background: #d6c800;
+   background-image: linear-gradient(to bottom, #d6c800, #f0d108);
+}
+
+#breset:hover {
+background: #ffdd00;
+  background-image: linear-gradient(to bottom, #ffdd00, #ffac05);
+  text-decoration: none;
+}
+
+
+#lap {
+  background: #00d9ff;
+  background-image: linear-gradient(to bottom, #00d9ff, #005eff);
+}
+
+#lap:hover {
+  background: #3cb0fd;
+  background-image: linear-gradient(to bottom, #3cb0fd, #004e82);
+}
+
+ul {
+ list-style-type:decimal;
+     padding: 20px;
+}
+
+
+ul li {
+    background: #cce5ff;
+    margin: 5px;
+}</style>
+<script>window.onload = function() {
+  var min = 0;
+  var sec = 0;
+  var set = 0;
+  var appendSet = document.getElementById("set")
+  var appendSec = document.getElementById("sec")
+  var appendMin = document.getElementById("min")
+  var buttonStart = document.getElementById('bstart');
+  var buttonStop = document.getElementById('bstop');
+  var buttonReset = document.getElementById('breset');
+  var Lap = document.getElementById('lap');
+  var Laps = document.getElementById('laps');
+  var Interval;
+
+  buttonStart.onclick = function() {
+
+    clearInterval(Interval);
+    Interval = setInterval(startTimer, 10);
+  }
+
+  buttonStop.onclick = function() {
+    clearInterval(Interval);
+  }
+
+  buttonReset.onclick = function() {
+    clearInterval(Interval);
+    set = "00";
+    sec = "00";
+    min = "00";
+    appendSet.innerHTML = set;
+    appendSec.innerHTML = sec;
+    appendMin.innerHTML = min;
+    var elem = document.getElementById('laps').innerHTML = '';
+  }
+
+  function startTimer() {
+    set++;
+
+    if (set < 9) {
+      appendSet.innerHTML = "0" + set;
+    }
+
+    if (set > 9) {
+      appendSet.innerHTML = set;
+
+    }
+
+    if (set > 99) {
+      console.log("sec");
+      sec++;
+      appendSec.innerHTML = "0" + sec;
+      set = 0;
+      appendSet.innerHTML = "0" + 0;
+    }
+
+    if (sec > 9) {
+      appendSec.innerHTML = sec;
+    }
+
+    if (sec > 59) {
+      console.log("min");
+      min++;
+      appendMin.innerHTML = "0" + min;
+      sec = 0;
+      appendSec.innerHTML = "0" + 0;
+    }
+
+    if (min > 9) {
+      appendSec.innerHTML = sec;
+    }
+    var lastLap = {
+      set: 0,
+      sec: 0,
+      min: 0
+    };
+
+    Lap.onclick = function() {
+      var lapSec = sec - lastLap.sec;
+      var lapSet = set - lastLap.set;
+      var lapMin = min - lastLap.min;
+      lastLap = {
+        set: set,
+        sec: sec,
+        min: min
+      };
+
+      Laps.innerHTML += "<li>" + leftPad(lapMin) + ":" + leftPad(lapSec) + ":" + leftPad(lapSet) + "</li>";
+    }
+
+  }
+
+  function leftPad(value) {
+    return value < 10 ? ('0' + value) : value;
+  }
+
+}
+
+</script>
+  </head>
+<body>
+
+<div id="stoper">
+<h1 class=hh>Stoper</h1>
+<p class=hh id="czas"><span id="min">00</span>:<span id="sec">00</span>:<span id="set">00</span></p>
+<button class ="btn" id="bstart">Start</button>
+<button class ="btn" id="bstop">Stop</button>
+<button class ="btn" id="breset">Reset</button>
+<button class ="btn" id="lap">Okrążenie</button>
+<ul id="laps"></ul>
+</div> 
+
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css doodle</title>
+    <style>html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: #371585; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.7.2/css-doodle.min.js"></script>
+    </head><body>
+
+<css-doodle>
+  :doodle { 
+    @grid: 1x70 / 70vmin;
+  }
+
+  @place-cell: center;
+  @size: calc(@index() * 2.37%);
+
+  will-change: transform;
+
+  border: 1px solid transparent;
+border-radius:50%;
+  border-left-color: hsl(
+    calc(40 + 5 * @index()), 70%, 68%
+  );
+
+  animation: spin calc(@index() * .6s) 
+    linear infinite;
+
+  --f: @rand(360deg);
+  --t: calc(var(--f) + @pick(2turn,-2turn, 3turn ));
+
+  @keyframes spin {
+    from { transform: rotate(var(--f)) }
+    to { transform: rotate(var(--t)) }
+  }
+</css-doodle>
+    </body></html>

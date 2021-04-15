@@ -1,0 +1,16 @@
+{
+  "name": "virtus",
+  "version": "1.0.0",
+  "main": "show.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bulma-carousel": "^4.0.4",
+    "bulma-social": "^1.1.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}

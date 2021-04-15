@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: black; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}</style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.7.2/css-doodle.min.js"></script>
+    <title>flares</title>
+</head>
+
+<body>
+<css-doodle>
+  :doodle {
+    @grid: 60x1 / 40vmin;
+    perspective: 13vmin;
+  }
+  background: @multiple(@r(2, 240), (
+    radial-gradient(
+      @p(#fff) 15%,
+      transparent 0%
+    ) @R(30%) @r(100%) / @r(1%, 4%, .1) @lr() no-repeat
+  ));
+
+  @size: 100%;
+  @place-cell: center;
+ 
+
+  transform-style: preserve-3d;
+  animation: scale-up 30s linear infinite;
+  animation-delay: calc(@i() * -.7s);
+
+  @keyframes scale-up {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 0, 0) rotate(0);
+    }
+    10% { 
+      opacity: 1; 
+    }
+    95% {
+      transform:
+        translate3d(0, 0, @r(50vmin, 55vmin))
+        rotate(@r(-360deg, 360deg));
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 1vmin);
+    }
+  }
+</css-doodle>
+
+</body>
+
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Logowanie</title>
+    <STYLE>body {
+  background: #780206; 
+  background: -webkit-linear-gradient(
+    to right,
+    #061161,
+    #780206
+  ); 
+  background: linear-gradient(
+    to right,
+    #061161,
+    #780206
+  ); 
+
+  font-family: verdana;
+}
+
+.main {
+  width: 600px;
+  height: 350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+}
+.beforebox {
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  display: inline-flex;
+}
+
+.frontbox {
+  background: rgba(140, 140, 140, 0.2); 
+  border-radius: 20px;
+  height: 100%;
+  width: 50%;
+  z-index: 10;
+  position: absolute;
+  right: 0;
+  margin-right: 3%;
+  margin-left: 3%;
+  transition: right 0.8s ease-in-out;
+}
+
+.moving {
+  right: 45%;
+}
+
+.loginMsg,
+.signupMsg {
+  width: 50%;
+  height: 100%;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.loginMsg .title,
+.signupMsg .title {
+  font-weight: 300;
+  font-size: 23px;
+}
+
+.loginMsg p,
+.signupMsg p {
+  font-weight: ;
+}
+
+.content {
+  color: white;
+  margin-top: 65px;
+  margin-left: 12%;
+}
+
+.loginMsg button,
+.signupMsg button {
+  background-color: #404040;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  box-sizing: content-box;
+  font-weight: 300;
+  padding: 10px;
+  margin-top: 20px;
+}
+.login,
+.signup {
+  padding: 20px;
+  text-align: center;
+}
+
+.login h2,
+.signup h2 {
+  color:white;
+  font-size: 22px;
+}
+
+.input {
+  margin-top: 30px;
+}
+.login input,
+.signup input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  background-color: #f2f2f2;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 12px;
+ padding-left:12px;
+
+}
+
+.login button,
+.signup button {
+  background-color: #404040;
+  border: 2px solid white;
+  color: white;
+  font-size: 12px;
+  font-weight: 300;
+  box-sizing: content-box;
+  padding: 10px;
+  border-radius: 10px;
+  width: 60px;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  cursor: pointer;
+}
+
+.login p {
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+
+.loginMsg,
+.signupMsg {
+  /*opacity: 1;*/
+  transition: opacity 0.8s ease-in-out;
+}
+
+.visibility {
+  opacity: 0;
+}
+
+.hide {
+  display: none;
+}
+
+</STYLE>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    
+    
+var $loginMsg = $('.loginMsg'),
+  $login = $('.login'),
+  $signupMsg = $('.signupMsg'),
+  $signup = $('.signup'),
+  $frontbox = $('.frontbox');
+
+$('#switch1').on('click', function() {
+  $loginMsg.toggleClass("visibility");
+  $frontbox.addClass("moving");
+  $signupMsg.toggleClass("visibility");
+
+  $signup.toggleClass('hide');
+  $login.toggleClass('hide');
+})
+
+$('#switch2').on('click', function() {
+  $loginMsg.toggleClass("visibility");
+  $frontbox.removeClass("moving");
+  $signupMsg.toggleClass("visibility");
+
+  $signup.toggleClass('hide');
+  $login.toggleClass('hide');
+})
+
+setTimeout(function(){
+  $('#switch1').click()
+},1000)
+
+setTimeout(function(){
+  $('#switch2').click()
+},3000)
+</script>
+</head>
+<body>
+   
+  <div class="main">
+    <div class="beforebox">
+      <div class="loginMsg">
+        <div class="content">
+          <p class="title">Don't have an account?</p>
+
+          <button id="switch1">Sign Up</button>
+        </div>
+      </div>
+      <div class="signupMsg visibility">
+        <div class="content">
+          <p class="title">Have an account?</p>
+          <button id="switch2">LOG IN</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="frontbox">
+      <div class="login">
+        <h2>LOG IN</h2>
+        <div class="input">
+          <input type="text" name="email" placeholder=" NICKNAME">
+          <input type="password" name="password" placeholder="  PASSWORD">
+        </div>
+        <p>FORGET PASSWORD?</p>
+        <button>LOG IN</button>
+      </div>
+
+      <div class="signup hide">
+        <h2>SIGN UP</h2>
+        <div class="input">
+          <input type="text" name="fullname" placeholder="  NICKNAME">
+          <input type="text" name="email" placeholder="  EMAIL">
+          <input type="password" name="password" placeholder="  PASSWORD">
+        </div>
+        <button>SIGN UP</button>
+      </div>
+
+    </div>
+  </div>
+    
+</body>
+</html>
